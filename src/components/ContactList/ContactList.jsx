@@ -5,12 +5,12 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 import { Tooltip } from '@mui/material';
-import { deleteContact } from 'redux/operations';
-import { getContacts, getFilter } from 'redux/selectors';
+import { deleteContact } from 'redux/Contacts/operationsContact';
+import { selectContacts, selectFilter } from 'redux/selectors';
 
 export const ContactList = () => {
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilter);
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
 
   const deleteContactsById = (id, contactName) => {
