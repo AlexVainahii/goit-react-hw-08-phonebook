@@ -8,6 +8,6 @@ export const selectFilter = state => state.filter;
 
 export const selectUser = state => state.auth.user;
 
-export const selectIsLoggedIn = state => state.auth.isLoggedIn;
+export const selectIsLogged = state => state.auth.isLogged;
 
 export const selectIsRefreshing = state => state.auth.isRefreshing;

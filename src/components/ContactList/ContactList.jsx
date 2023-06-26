@@ -1,4 +1,4 @@
-import { Button, Li, P, Ul } from './ContactList.styled';
+import { Button, ContainerR, Li, P, Ul } from './ContactList.styled';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { toast } from 'react-toastify';
@@ -31,7 +31,7 @@ export const ContactList = () => {
   };
 
   return (
-    <>
+    <ContainerR>
       {contacts.length <= 0 ? (
         <P>No contacts were found for this request</P>
       ) : filterContacts().length <= 0 ? (
@@ -41,7 +41,9 @@ export const ContactList = () => {
           {filterContacts().map(({ id, name, number }) => {
             return (
               <Li key={id}>
-                {name} : {number}
+                <span>
+                  {name} : {number}
+                </span>
                 <Tooltip title="Delete contacts">
                   <Button
                     type="button"
@@ -57,6 +59,6 @@ export const ContactList = () => {
           })}
         </Ul>
       )}
-    </>
+    </ContainerR>
   );
 };

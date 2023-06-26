@@ -1,4 +1,3 @@
-import { isAnyOf } from '@reduxjs/toolkit';
 export const onPending = state => {
   state.isRefreshing = true;
 };
@@ -10,15 +9,15 @@ export const onRejected = state => {
 export const onFulfilledRegisterLogin = (state, { payload }) => {
   state.user = payload.user;
   state.token = payload.token;
-  state.isLoggedIn = true;
+  state.isLogged = true;
 };
 export const onFulfilledLogOut = state => {
   state.user = { name: null, email: null };
   state.token = null;
-  state.isLoggedIn = false;
+  state.isLogged = false;
 };
 export const onFulfilledRefresh = (state, { payload }) => {
   state.user = payload;
-  state.isLoggedIn = true;
+  state.isLogged = true;
   state.isRefreshing = false;
 };

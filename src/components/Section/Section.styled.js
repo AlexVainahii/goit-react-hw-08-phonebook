@@ -1,14 +1,17 @@
 import styled from '@emotion/styled';
 
-export const SectionTitle = styled.h2`
+export const SectionTitle = styled.h3`
   text-align: center;
-  margin-bottom: 15px;
   border-radius: 5px;
-  background: linear-gradient(to bottom, #6e69e4, #1336ad);
+  background: linear-gradient(
+    to bottom,
+    rgba(150, 255, 255, 1),
+    rgba(0, 0, 0, 1)
+  );
+  width: 100%;
+  margin: 0 auto;
   color: white;
+  text-shadow: 2px 2px 2px #000, 0 2px 2px #000, -2px 0 2px #000,
+    0 -2px 2px #000;
   padding: 10px;
-
-  @media (max-width: 480px) {
-    font-size: 18px;
-  }
 `;

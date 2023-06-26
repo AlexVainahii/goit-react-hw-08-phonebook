@@ -1,9 +1,7 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
@@ -11,40 +9,41 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import AuthImage from '../../images/Auth.jpeg';
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-// TODO remove, this demo shouldn't need to reset the theme.
+import { useDispatch } from 'react-redux';
+import { userRegister } from 'redux/Auth/operationsAuth';
+import { toast } from 'react-toastify';
 
 const defaultTheme = createTheme();
 
 export const SignUp = () => {
-  const handleSubmit = event => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+  const dispatch = useDispatch();
+  const handleSubmit = e => {
+    e.preventDefault();
 
+    const data = new FormData(e.currentTarget);
+    const confirm = data.get('password') === data.get('confirmPassword');
+
+    const name = data.get('name');
+    const email = data.get('email');
+    const password = data.get('password');
+
+    if (!name) {
+      toast.warning('Please enter your name.');
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.warning('Please enter a valid email address.');
+      return;
+    }
+
+    if (confirm) {
+      dispatch(userRegister({ name, email, password }));
+    } else {
+      toast.warning('Password and Confirm Password do not match.');
+    }
+  };
   return (
     <ThemeProvider theme={defaultTheme}>
       <Grid
@@ -64,6 +63,7 @@ export const SignUp = () => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            padding: '10px',
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -82,7 +82,7 @@ export const SignUp = () => {
               <Grid item xs={12}>
                 <TextField
                   autoComplete="given-name"
-                  name="Name"
+                  name="name"
                   required
                   fullWidth
                   id="firstName"
@@ -116,11 +116,11 @@ export const SignUp = () => {
                 <TextField
                   required
                   fullWidth
-                  name="confirm-password"
+                  name="confirmPassword"
                   label="Confirm Password"
                   type="password"
-                  id="confirm-password"
-                  autoComplete="confirm-password"
+                  id="confirmPassword"
+                  autoComplete="Confirm Password"
                 />
               </Grid>
             </Grid>

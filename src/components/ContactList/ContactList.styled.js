@@ -2,43 +2,38 @@ import styled from '@emotion/styled';
 
 export const Ul = styled.ul`
   padding: 15px;
-  width: 400px;
+  width: 100%;
+  height: 90%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   gap: 15px;
-  background: linear-gradient(to bottom, #6e69e4, #1336ad);
-  border-radius: 5px;
-  max-height: 390px;
   overflow: auto;
-  @media (max-width: 768px) {
-    width: 300px;
-  }
+
+  border-radius: 5px;
 
   @media (max-width: 480px) {
-    width: 90%;
+    width: 100%;
+    height: 100%;
     padding: 10px;
   }
 `;
 
 export const P = styled.p`
-  background: linear-gradient(to bottom, #6e69e4, #1336ad);
+  background: linear-gradient(to bottom, #fff, #fff);
   border-radius: 5px;
   text-align: center;
   display: block;
   font-size: 18px;
   text-wrap: wrap;
   padding: 10px;
-  color: #fff;
+  color: #000;
 
   margin-bottom: 10px;
-  @media (max-width: 768px) {
-    width: 300px;
-  }
 
   @media (max-width: 480px) {
-    width: 90%;
+    width: 100%;
     padding: 10px;
 
     font-size: 16px;
@@ -55,32 +50,56 @@ export const Li = styled.li`
   gap: 10px;
   background-color: #fff;
   transition: background-color 0.3s ease;
+  span {
+    width: 70%;
+  }
   :hover {
     background-color: yellow;
   }
 `;
 
 export const Button = styled.button`
-  width: 10%;
-  border-radius: 50%;
+  width: 60px;
+  height: 30px;
+  border-radius: 50px;
   border: none;
-  background: linear-gradient(to bottom, #E04236, #AD4E18);
+  background: linear-gradient(to bottom, #e04236, #ad4e18);
   font-size: 16px;
-  padding: 5px 5px;
+
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
-  transition:  scale 0.3s ease;
+  transition: scale 0.3s ease;
 
   :hover {
- scale:1.1;
-    
-  }
+    scale: 1.1;
   }
 
   @media (max-width: 480px) {
     font-size: 14px;
     padding: 4px 8px;
+  }
+`;
+export const ContainerR = styled.div`
+  padding: 15px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 15px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(150, 255, 255, 1),
+    rgba(0, 0, 0, 1)
+  );
+  border-radius: 5px;
+
+  @media (max-width: 480px) {
+    width: 100%;
+    padding: 10px;
   }
 `;

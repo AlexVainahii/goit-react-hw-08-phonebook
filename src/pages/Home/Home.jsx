@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 import { styled } from 'styled-components';
+import { selectIsLogged } from 'redux/selectors';
+import { useSelector } from 'react-redux';
 const AnimatedBox = styled(Box)`
   position: fixed;
-  right: 3%;
-  top: ${({ show }) => (show ? '10%' : '-100%')};
+  right: 6%;
+  top: ${({ show }) => (show ? '11%' : '-100%')};
   transition: top 2s ease-in-out;
 `;
 const Home = () => {
   const [showMessage, setShowMessage] = useState(false);
+  const isLogged = useSelector(selectIsLogged);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -22,19 +25,22 @@ const Home = () => {
   }, []);
   return (
     <>
-      <AnimatedBox
-        show={showMessage}
-        color="white"
-        sx={{
-          textShadow: '8px 8px 16px rgba(0, 0, 0, 0.7)',
-        }}
-        display="flex"
-        alignItems="center"
-        justifyContent="flex-end"
-        zIndex={100}
-      >
-        <Typography variant="body1">Please Signup or Login</Typography>
-      </AnimatedBox>
+      {!isLogged ?? (
+        <AnimatedBox
+          show={showMessage ? 'true' : ''}
+          color="white"
+          sx={{
+            textShadow: '8px 8px 16px rgba(0, 0, 0, 1)',
+          }}
+          display="flex"
+          alignItems="center"
+          justifyContent="flex-end"
+          zIndex={100}
+        >
+          <Typography variant="body1">Please Signup or Login</Typography>
+        </AnimatedBox>
+      )}
+
       <Box
         display="flex"
         justifyContent="center"
@@ -47,10 +53,20 @@ const Home = () => {
           align="center"
           color="#fff"
           sx={{
-            textShadow: '8px 8px 16px rgba(0, 0, 0, 0.7)',
+            textShadow: '8px 8px 16px rgba(0, 0, 0, 1)',
+            WebkitTextStroke: '2px black',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            height: '80vh',
+            '@media (max-width: 480px)': {
+              justifyContent: 'start',
+            },
           }}
         >
-          Welcome to your Phone Book
+          <span> Welcome</span>
+          <span> to your</span>
+          <span>Phone Book</span>
         </Typography>
       </Box>
     </>

@@ -11,25 +11,29 @@ const Container = styled.div`
   z-index: 200;
   background: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 1),
+    rgba(150, 255, 255, 1),
     rgba(0, 0, 0, 1)
   );
   border-radius: 0 0 50px 50px;
-`;
-
-const ResponsiveLayout = styled.div`
-  @media (max-width: 468px) {
-    ${Container} {
+  @media (max-width: 443px) {
+    nav {
+      flex-direction: column;
+    }
+    div {
       flex-direction: column;
     }
   }
 `;
+
 export const Navigation = styled.nav`
   display: flex;
   width: 100%;
   justify-content: space-between;
   margin-left: 25px;
   z-index: 5;
+  @media (max-width: 420px) {
+    margin-left: 0;
+  }
 `;
 
 export const NavigationLink = styled(NavLink)`
@@ -44,7 +48,10 @@ export const NavigationLink = styled(NavLink)`
   color: white;
   text-shadow: 2px 2px 2px #000, 0 2px 2px #000, -2px 0 2px #000,
     0 -2px 2px #000;
-
+  @media (max-width: 443px) {
+    margin-top: 0;
+    padding: 2px;
+  }
   &.active {
     color: orange;
   }
@@ -54,4 +61,4 @@ export const NavigationLink = styled(NavLink)`
   }
 `;
 
-export { ResponsiveLayout, Container };
+export { Container };

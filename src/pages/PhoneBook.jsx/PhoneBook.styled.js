@@ -1,21 +1,25 @@
 import styled from '@emotion/styled';
 
 export const SectionContainer = styled.div`
+  display: flex;
   padding: 15px;
-  max-width: 600px;
+  max-width: 90%;
+  height: 86%;
+  gap: 15px;
   margin: 0 auto;
+  margin-top: 20px;
   border: 1px solid black;
+  overflow: hidden;
   background: linear-gradient(
     to bottom,
-    rgba(225, 215, 27, 0.5),
-    rgba(199, 188, 42, 0.5)
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.2)
   );
-  @media (max-width: 768px) {
-    max-width: 400px;
-  }
 
   @media (max-width: 480px) {
-    max-width: 300px;
+    flex-direction: column;
+    overflow: visible;
+    max-width: 100%;
     padding: 10px;
   }
 `;
@@ -25,15 +29,32 @@ export const Loader = styled.div`
   justify-content: center;
 `;
 export const Container = styled.div`
-  padding: 15px;
-  max-width: 100%;
   margin: 0 auto;
   display: flex;
-  flex-direction: column;
   gap: 15px;
+  justify-content: space-between;
+  flex-direction: column;
   background-color: none;
-
+  width: 70%;
   @media (max-width: 768px) {
-    max-width: 100%;
+    width: 60%;
+  }
+  @media (max-width: 480px) {
+    width: 100%;
+  }
+`;
+export const ContainerL = styled.div`
+  margin: 0 auto;
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+  flex-direction: column;
+  background-color: none;
+  width: 30%;
+  @media (max-width: 850px) {
+    width: 40%;
+  }
+  @media (max-width: 480px) {
+    width: 100%;
   }
 `;

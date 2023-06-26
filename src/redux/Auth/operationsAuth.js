@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export const setToken = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -12,10 +13,18 @@ export const userRegister = createAsyncThunk(
   async (registerData, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/users/signup', registerData);
+      console.log(data);
       setToken(data.token);
       return data;
     } catch (e) {
-      rejectWithValue(e.message);
+      if (e.response.status === 400) {
+        toast.error(
+          `User with email ${registerData.email} is already registered!`
+        );
+      } else if (e.response.status === 500) {
+        toast.error('Server error');
+      }
+      return rejectWithValue(e.message);
     }
   }
 );
@@ -27,6 +36,9 @@ export const userLogIn = createAsyncThunk(
       setToken(data.token);
       return data;
     } catch (e) {
+      if (e.response.status === 400) {
+        toast.error(`User ${userData.email} is login error.`);
+      }
       return rejectWithValue(e.message);
     }
   }
@@ -39,6 +51,11 @@ export const userLogOut = createAsyncThunk(
       clearToken();
       return;
     } catch (e) {
+      if (e.response.status === 400) {
+        toast.error(`Invalid Log Out`);
+      } else if (e.response.status === '500') {
+        toast.error('Server error');
+      }
       return rejectWithValue(e.message);
     }
   }
@@ -56,6 +73,9 @@ export const userRefresh = createAsyncThunk(
       const { data } = await axios.get('/users/current');
       return data;
     } catch (e) {
+      if (e.response.status === 401) {
+        toast.error(`Not authorized`);
+      }
       return rejectWithValue(e.message);
     }
   }
